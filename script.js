@@ -60,15 +60,8 @@ function showResult() {
   document.getElementById("quiz-screen").style.display = "none";
   document.getElementById("result-screen").style.display = "block";
   document.getElementById("result-text").textContent = `You are ${finalResult}!`;
-
-  // Google Analytics tracking
-  if (typeof gtag === 'function') {
-    gtag('event', 'quiz_completed', {
-      'event_category': 'engagement',
-      'event_label': finalResult
-    });
-  }
 }
+
 
 
 
