@@ -13,15 +13,12 @@ const questions = [
 
 let currentQuestion = 0;
 let score = 0;
-
 function startQuiz() {
-  // Google Analytics event to track quiz start
-  if (typeof gtag === 'function') {
-    gtag('event', 'quiz_started', {
-      'event_category': 'engagement',
-      'event_label': 'Start Button Clicked'
-    });
-  }
+  document.getElementById("start-screen").style.display = "none";
+  document.getElementById("quiz-screen").style.display = "block";
+  showQuestion();
+}
+
 
   // Your existing quiz logic
   document.getElementById("start-screen").style.display = "none";
