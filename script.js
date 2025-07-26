@@ -12,21 +12,18 @@ const questions = [
 ];
 
 let currentQuestion = 0;
-let score = 0;
+let conradScore = 0;
+let jeremiahScore = 0;
+
 function startQuiz() {
+  currentQuestion = 0;
+  conradScore = 0;
+  jeremiahScore = 0;
+
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("quiz-screen").style.display = "block";
   showQuestion();
 }
-
-
-  // Your existing quiz logic
-  document.getElementById("start-screen").style.display = "none";
-  document.getElementById("quiz-screen").style.display = "block";
-  showQuestion();
-}
-
-
 
 function showQuestion() {
   const q = questions[currentQuestion];
@@ -37,8 +34,10 @@ function showQuestion() {
 }
 
 function chooseAnswer(answer) {
-  if (answer === "a2") {
-    score++;
+  if (answer === "a1") {
+    conradScore++;
+  } else if (answer === "a2") {
+    jeremiahScore++;
   }
   document.getElementById("next-btn").style.display = "inline-block";
 }
@@ -50,6 +49,7 @@ function nextQuestion() {
   } else {
     showResult();
   }
+  document.getElementById("next-btn").style.display = "none";
 }
 
 function showResult() {
@@ -59,13 +59,12 @@ function showResult() {
   document.getElementById("result-text").textContent = `You are ${finalResult}!`;
 }
 
-
-
-
 function retakeQuiz() {
   currentQuestion = 0;
-  score = 0;
+  conradScore = 0;
+  jeremiahScore = 0;
   document.getElementById("result-screen").style.display = "none";
   document.getElementById("quiz-screen").style.display = "block";
   showQuestion();
 }
+
