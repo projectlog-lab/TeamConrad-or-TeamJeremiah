@@ -15,10 +15,21 @@ let currentQuestion = 0;
 let score = 0;
 
 function startQuiz() {
+  // Google Analytics event to track quiz start
+  if (typeof gtag === 'function') {
+    gtag('event', 'quiz_started', {
+      'event_category': 'engagement',
+      'event_label': 'Start Button Clicked'
+    });
+  }
+
+  // Your existing quiz logic
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("quiz-screen").style.display = "block";
   showQuestion();
 }
+
+
 
 function showQuestion() {
   const q = questions[currentQuestion];
@@ -45,14 +56,20 @@ function nextQuestion() {
 }
 
 function showResult() {
+  let finalResult = conradScore > jeremiahScore ? "Team Conrad" : "Team Jeremiah";
   document.getElementById("quiz-screen").style.display = "none";
   document.getElementById("result-screen").style.display = "block";
-  if (score >= 6) {
-    document.getElementById("result-text").textContent = "💛 You're Team Jeremiah! Bright, bubbly, and sweet!";
-  } else {
-    document.getElementById("result-text").textContent = "💙 You're Team Conrad! Calm, deep, and romantic.";
+  document.getElementById("result-text").textContent = `You are ${finalResult}!`;
+
+  // Google Analytics result event
+  if (typeof gtag === 'function') {
+    gtag('event', 'quiz_completed', {
+      'event_category': 'engagement',
+      'event_label': finalResult
+    });
   }
 }
+
 
 function retakeQuiz() {
   currentQuestion = 0;
