@@ -61,7 +61,7 @@ function showResult() {
   document.getElementById("result-screen").style.display = "block";
   document.getElementById("result-text").textContent = `You are ${finalResult}!`;
 
-  // Google Analytics result event
+  // Google Analytics tracking
   if (typeof gtag === 'function') {
     gtag('event', 'quiz_completed', {
       'event_category': 'engagement',
@@ -69,6 +69,7 @@ function showResult() {
     });
   }
 }
+
 
 
 function retakeQuiz() {
